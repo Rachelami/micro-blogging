@@ -12,27 +12,22 @@ class CreateTweet extends React.Component {
 		};
 	}
 
-	updateTimeAndId() {
-		let date = new Date().toString();
-		this.setState({ date: date, id: this.state.id + 1 });
-	}
 
 	handleSubmit(event) {
 		const { text, date, id } = this.state;
 		event.preventDefault();
 		let tweet = {
-			date: date,
+			date: new Date().toString(),
 			text: text,
 			user: "Rachel Ouday",
-			id: id,
+			id: id + 1,
 		};
+		// this.setState({id: id+1}) // making everything twice
 		this.props.handleOnTweet(tweet);
 	}
 
 	render() {
 		const { text } = this.state;
-		console.log(this.state.text);
-
 		return (
 			<div>
 				<div className="tweet-box background">
@@ -72,7 +67,7 @@ class CreateTweet extends React.Component {
 									variant="primary"
 									size="sm"
 									active
-									onClick={() => this.updateTimeAndId()}
+									// onClick={() => this.updateTimeAndId()}
 								>
 									Tweet
 								</Button>

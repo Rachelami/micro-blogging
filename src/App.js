@@ -13,11 +13,13 @@ class App extends React.Component {
             list: [],
             newDate: '',
             text: '',
-            currentTweet: ''
-		};
+            currentTweet: []
+    };
+    this.handleOnTweet = this.handleOnTweet.bind(this)
 	}
 
 handleOnTweet(tweet) {
+  console.log(tweet);
   this.setState({ currentTweet: tweet });
 }
 
@@ -26,8 +28,9 @@ handleOnTweet(tweet) {
     <div className="App background">
       <div className="row">
         <div className="col-6 offset-3">
-        <CreateTweet handleOnTweet={(tweet) => this.handleOnTweet(tweet)}/>
+        <CreateTweet handleOnTweet={this.handleOnTweet} />
         <TweetsList tweet={this.state.currentTweet}/>
+
         </div>
     </div>
     </div>

@@ -5,57 +5,69 @@ class TweetsList extends React.Component {
 		super(props);
 		this.state = {
 			tweets: [],
+			isItEmpty: true,
 		};
 	}
 
 	createTweetsList() {
 		this.setState({ tweets: [this.props.tweet, ...this.state.tweets] });
+		this.createItem();
+
 	}
 
 	componentDidUpdate(prevProps) {
 		if (prevProps.tweet !== this.props.tweet) {
 			this.createTweetsList();
-			this.createItem()
 		}
 	}
-	
+
 	createItem() {
 		localStorage.setItem("saved", JSON.stringify(this.state.tweets));
 	}
-	
+
 	readValue() {
 		let x = localStorage.getItem("saved");
-		console.log("x")
-		let savedItems = JSON.parse(x)
-		console.log("this.state.tweets")
-		console.log(this.state.tweets)
-		this.setState({tweets: savedItems})
+		let savedItems = JSON.parse(x);
+		{
+			savedItems !== null &&
+				this.setState({ tweets: savedItems, isItEmpty: false });
+		}
 	}
 
+	componentDidMount() {
+		// {this.setState({isItEmpty: true })}
+		{
+			this.state.isItEmpty === true && this.readValue();
+		}
+		console.log("componentDidMount");
+	}
 
-	componentDidMount(){
-		this.readValue()
-		console.log("componentDidMount")
-
+	sortByDate() {
+		if (this.state.tweets !== null) {
+			const SortedByDate = this.state.tweets.sort((a, b) => b.date - a.date);
+			return SortedByDate;
+		}
 	}
 
 	render() {
 		const { tweet } = this.props;
-		console.log(this.state.tweets);
-		const { tweets } = this.state;
+		const { tweets, isItEmpty } = this.state;
+		const sortedTweets = this.sortByDate();
 		return (
 			<div>
-				<ul className="tweets-ul">
-					{tweets.map((tweet) => (
-						<li key={tweet.id} className="tweet-in-list">
-							<div className="name-date">
-							<span>{tweet.user}</span>
-							<span>{tweet.date}</span>
-							</div>
-							<div className="tweet-text">{tweet.text}</div>
-						</li>
-					))}
-				</ul>
+				{sortedTweets !== undefined && (
+					<ul className="tweets-ul">
+						{sortedTweets.map((tweet) => (
+							<li key={tweet.id} className="tweet-in-list">
+								<div className="name-date">
+									<span>{tweet.user}</span>
+									<span>{tweet.date}</span>
+								</div>
+								<div className="tweet-text">{tweet.text}</div>
+							</li>
+						))}
+					</ul>
+				)}
 			</div>
 		);
 	}
