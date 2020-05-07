@@ -15,6 +15,11 @@ export async function postData(tweet) {
             console.log(response);
           }, (error) => {
             console.log(error);
+            this.setState({loading: false})
         });
 }
 
+
+export async function loading() {
+
+}
