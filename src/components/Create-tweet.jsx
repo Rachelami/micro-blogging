@@ -16,13 +16,11 @@ class CreateTweet extends React.Component {
 	handleSubmit(event) {
 		const { text, date, id } = this.state;
 		event.preventDefault();
-		let tweet = {
-			date: new Date().toString(),
-			text: text,
-			user: "Rachel Ouday",
-			id: id + 1,
-		};
-		// this.setState({id: id+1}) // making everything twice
+		let tweet = {tweet: {
+			date: new Date().toISOString(),
+			content: text,
+			userName: "Rachel Ouday",
+		}};
 		this.props.handleOnTweet(tweet);
 	}
 
@@ -67,7 +65,6 @@ class CreateTweet extends React.Component {
 									variant="primary"
 									size="sm"
 									active
-									// onClick={() => this.updateTimeAndId()}
 								>
 									Tweet
 								</Button>

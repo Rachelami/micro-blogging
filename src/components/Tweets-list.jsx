@@ -1,4 +1,5 @@
 import React from "react";
+import { getData, postNewTweet } from '../lib/api';
 
 class TweetsList extends React.Component {
 	constructor(props) {
@@ -6,41 +7,25 @@ class TweetsList extends React.Component {
 		this.state = {
 			tweets: [],
 			isItEmpty: true,
+			newlist:[],
 		};
 	}
 
-	createTweetsList() {
-		this.setState({ tweets: [this.props.tweet, ...this.state.tweets] });
-		this.createItem();
+	async componentDidMount() {
+		await getData().then((response) => {
+		  this.setState({
+			list: response.data,
+				});
+		});
+	  }
 
-	}
-
-	componentDidUpdate(prevProps) {
-		if (prevProps.tweet !== this.props.tweet) {
-			this.createTweetsList();
-		}
-	}
-
-	createItem() {
-		localStorage.setItem("saved", JSON.stringify(this.state.tweets));
-	}
-
-	readValue() {
-		let x = localStorage.getItem("saved");
-		let savedItems = JSON.parse(x);
-		{
-			savedItems !== null &&
-				this.setState({ tweets: savedItems, isItEmpty: false });
-		}
-	}
-
-	componentDidMount() {
-		// {this.setState({isItEmpty: true })}
-		{
-			this.state.isItEmpty === true && this.readValue();
-		}
-		console.log("componentDidMount");
-	}
+componentDidUpdate(){
+	getData().then((response) => {
+		this.setState({
+		  list: response.data,
+			  });
+	  });
+}
 
 	sortByDate() {
 		if (this.state.tweets !== null) {
@@ -50,27 +35,24 @@ class TweetsList extends React.Component {
 	}
 
 	render() {
-		const { tweet } = this.props;
-		const { tweets, isItEmpty } = this.state;
-		const sortedTweets = this.sortByDate();
 		return (
 			<div>
-				{sortedTweets !== undefined && (
+				{this.state.list !== undefined && (
 					<ul className="tweets-ul">
-						{sortedTweets.map((tweet) => (
-							<li key={tweet.id} className="tweet-in-list">
+						{this.state.list.tweets.map((item) => (
+							<li key={item.date} className="tweet-in-list">
 								<div className="name-date">
-									<span>{tweet.user}</span>
-									<span>{tweet.date}</span>
+									<span>{item.userName}</span>
+									<span>{item.date}</span>
 								</div>
-								<div className="tweet-text">{tweet.text}</div>
+								<div className="tweet-text">{item.content}</div>
 							</li>
 						))}
 					</ul>
 				)}
 			</div>
-		);
-	}
-}
+			);
+	}}	
+
 
 export default TweetsList;

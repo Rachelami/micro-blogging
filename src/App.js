@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateTweet from './components/Create-tweet';
 import TweetsList from './components/Tweets-list';
+import { getData, postData } from './lib/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './css/Create-tweet.css'
@@ -11,9 +12,6 @@ class App extends React.Component {
 		super(props);
 		this.state = {
             list: [],
-            newDate: '',
-            text: '',
-            currentTweet: []
     };
     this.handleOnTweet = this.handleOnTweet.bind(this)
 	}
@@ -21,6 +19,7 @@ class App extends React.Component {
 handleOnTweet(tweet) {
   console.log(tweet);
   this.setState({ currentTweet: tweet });
+  postData(tweet)
 }
 
   render() {
@@ -29,7 +28,7 @@ handleOnTweet(tweet) {
       <div className="row">
         <div className="col-6 offset-3">
         <CreateTweet handleOnTweet={this.handleOnTweet} />
-        <TweetsList tweet={this.state.currentTweet}/>
+        <TweetsList {...this.state}/>
 
         </div>
     </div>
