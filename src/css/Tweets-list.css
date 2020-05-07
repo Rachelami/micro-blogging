@@ -1,0 +1,29 @@
+.tweet-in-list {
+	background-color: #343A40;
+	border-radius: 6px;
+	padding: 20px;
+	margin: 10px 0px;
+	list-style: none;
+	color: white;
+	font-size: 14px;
+}
+
+.tweets-ul {
+	padding: 0px;
+}
+
+.name-date {
+	display: flex;
+    justify-content: space-between;
+    color: #6C757D;
+}
+
+.tweet-text{
+    text-align: left;
+    margin-top: 14px;
+}
+
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}

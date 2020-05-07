@@ -1,0 +1,29 @@
+.tweet-box{
+    display:flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-top: 20px;
+    color: #ccc;
+    text-align: left;
+}
+
+.tweet-button{
+    margin-right: 10px;
+    background-color: red;
+    align-self: flex-end;
+    padding: 5px 10px;
+}
+
+.form-control{
+    border-radius: none;
+}
+
+.tweet-input2{
+    border: none;
+}
+
+.background{
+    background-color:rgb(21, 20, 22);
+}
