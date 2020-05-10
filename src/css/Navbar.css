@@ -1,0 +1,26 @@
+.navbar {
+    color: white;
+    margin-right: 45px;
+}
+
+.nav-back{
+    height: 58px;
+    top: 0px;
+    background-color: #343A40;
+    border-radius: 6px;
+    padding: 0px 35px;
+    margin-bottom: 52px;
+}
+
+.white{
+    color: white;
+}
+
+.right{
+    justify-content:flex-end;
+    margin-top: 18px;
+}
+
+.profile-down{
+    margin-bottom:26px;
+}

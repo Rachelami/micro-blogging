@@ -1,12 +1,16 @@
 import React from "react";
 import CreateTweet from "./components/Create-tweet";
 import TweetsList from "./components/Tweets-list";
-import { getData, postData, loading } from "./lib/api";
+import { postData } from "./lib/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./css/Create-tweet.css";
 import "./css/Tweets-list.css";
 import Loader from "./components/Loader";
+import Profile from "./pages/Profile";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./css/Navbar.css";
+import Navbar from "./components/Navbar";
 
 class App extends React.Component {
 	constructor(props) {
@@ -34,8 +38,6 @@ class App extends React.Component {
 	}
 
 	handleOnTweet(tweet) {
-		// console.log(tweet);
-		// this.setState({ currentTweet: tweet });
 		postData(tweet);
 	}
 
@@ -43,11 +45,26 @@ class App extends React.Component {
 		const { loading } = this.state;
 		return (
 			<div className="App background">
-				{loading && <Loader />}
-				<div className="row">
-					<div className="col-6 offset-3">
-						<CreateTweet handleOnTweet={this.handleOnTweet} />
-						<TweetsList {...this.state} />
+				<div>
+					{loading && <Loader />}
+					<div className="row">
+						<Router>
+							<div className="col-10 offset-1">
+								<Navbar />
+							</div>
+							<Switch>
+								<Route path="/profile">
+									<Profile />
+								</Route>
+
+								<Route path="/">
+									<div className="col-6 offset-3">
+										<CreateTweet handleOnTweet={this.handleOnTweet} />
+										<TweetsList {...this.state} />
+									</div>
+								</Route>
+							</Switch>
+						</Router>
 					</div>
 				</div>
 			</div>

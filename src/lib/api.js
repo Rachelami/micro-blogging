@@ -18,8 +18,3 @@ export async function postData(tweet) {
             this.setState({loading: false})
         });
 }
-
-
-export async function loading() {
-
-}

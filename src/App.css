@@ -43,3 +43,7 @@
 .loader{
   color:white;
 }
+
+.flex{
+  display: flex;
+}

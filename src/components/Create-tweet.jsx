@@ -8,19 +8,22 @@ class CreateTweet extends React.Component {
 		this.state = {
 			date: "",
 			text: "",
-			id: 0,
 		};
 	}
 
-
 	handleSubmit(event) {
-		const { text, date, id } = this.state;
+		const { text } = this.state;
+		if (localStorage.getItem("userName") === null) {
+			localStorage.setItem("userName", "Anonymous");
+		}
 		event.preventDefault();
-		let tweet = {tweet: {
-			date: new Date().toISOString(),
-			content: text,
-			userName: "Rachel Ouday",
-		}};
+		let tweet = {
+			tweet: {
+				date: new Date().toISOString(),
+				content: text,
+				userName: localStorage.getItem("userName"),
+			},
+		};
 		this.props.handleOnTweet(tweet);
 	}
 
@@ -40,11 +43,12 @@ class CreateTweet extends React.Component {
 								className="tweet-input2 background"
 								as="textarea"
 								rows="3"
-								value={text}
+								// value={text}
 								onChange={(event) =>
 									this.setState({ text: event.target.value })
 								}
 							/>
+							{/* {document.getElementsByClassName(tweet-input2).innerText = "What you have in mind..."} */}
 						</Form.Group>
 						<div className="flex-end">
 							{this.state.text.length > 140 && (

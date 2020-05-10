@@ -1,5 +1,5 @@
 import React from "react";
-import { getData, postNewTweet } from '../lib/api';
+import { getData } from "../lib/api";
 
 class TweetsList extends React.Component {
 	constructor(props) {
@@ -7,32 +7,32 @@ class TweetsList extends React.Component {
 		this.state = {
 			tweets: [],
 			isItEmpty: true,
-			newlist:[],
+			newlist: [],
 		};
 	}
 
 	async componentDidMount() {
 		await getData().then((response) => {
-		  this.setState({
-			list: response.data,
-				});
+			this.setState({
+				list: response.data,
+			});
 		});
-	  }
-
-componentDidUpdate(){
-	getData().then((response) => {
-		this.setState({
-		  list: response.data,
-			  });
-	  });
-}
-
-	sortByDate() {
-		if (this.state.tweets !== null) {
-			const SortedByDate = this.state.tweets.sort((a, b) => b.date - a.date);
-			return SortedByDate;
-		}
 	}
+
+	componentDidUpdate() {
+		getData().then((response) => {
+			this.setState({
+				list: response.data,
+			});
+		});
+	}
+
+	// sortByDate() {
+	// 	if (this.state.tweets !== null) {
+	// 		const SortedByDate = this.state.tweets.sort((a, b) => b.date - a.date);
+	// 		return SortedByDate;
+	// 	}
+	// }
 
 	render() {
 		return (
@@ -51,8 +51,8 @@ componentDidUpdate(){
 					</ul>
 				)}
 			</div>
-			);
-	}}	
-
+		);
+	}
+}
 
 export default TweetsList;
