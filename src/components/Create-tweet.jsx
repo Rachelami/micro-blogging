@@ -1,17 +1,19 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import AppContext from "../AppContext";
 
 class CreateTweet extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			date: "",
 			text: "",
+			button: true,
 		};
 	}
 
-	handleSubmit(event) {
+	handleSubmit(event, callback) {
+		this.setState({ button: true });
 		const { text } = this.state;
 		if (localStorage.getItem("userName") === null) {
 			localStorage.setItem("userName", "Anonymous");
@@ -24,58 +26,57 @@ class CreateTweet extends React.Component {
 				userName: localStorage.getItem("userName"),
 			},
 		};
-		this.props.handleOnTweet(tweet);
+		this.setState({ text: "" });
+		callback(tweet);
+	}
+
+	changeButton(event) {
+		const { text } = this.state;
+		this.setState({ text: event.target.value, button: false });
+		if (text.length > 140 || event.target.value.length < 1) {
+			this.setState({ button: true });
+		} else {
+			this.setState({ button: false });
+		}
 	}
 
 	render() {
-		const { text } = this.state;
+		const { text, button } = this.state;
 		return (
 			<div>
-				<div className="tweet-box background">
-					<Form onSubmit={(event) => this.handleSubmit(event)}>
-						<Form.Group
-							className="tweet-input"
-							controlId="exampleForm.ControlTextarea1"
-						>
-							<Form.Control
-								placeholder="What you have in mind..."
-								type="text"
-								className="tweet-input2 background"
-								as="textarea"
-								rows="3"
-								// value={text}
-								onChange={(event) =>
-									this.setState({ text: event.target.value })
-								}
-							/>
-							{/* {document.getElementsByClassName(tweet-input2).innerText = "What you have in mind..."} */}
-						</Form.Group>
-						<div className="flex-end">
-							{this.state.text.length > 140 && (
-								<Button
-									type="submit"
-									className="tweet-button"
-									variant="primary"
-									size="sm"
-									disabled
+				<AppContext.Consumer>
+					{({ onTweetPost }) => (
+						<div className="tweet-box background">
+							<Form onSubmit={(event) => this.handleSubmit(event, onTweetPost)}>
+								<Form.Group
+									className="tweet-input"
+									controlId="exampleForm.ControlTextarea1"
 								>
-									Tweet
-								</Button>
-							)}
-							{this.state.text.length <= 140 && (
-								<Button
-									type="submit"
-									className="tweet-button"
-									variant="primary"
-									size="sm"
-									active
-								>
-									Tweet
-								</Button>
-							)}
+									<Form.Control
+										placeholder="What you have in mind..."
+										type="text"
+										className="tweet-input2 background"
+										as="textarea"
+										rows="3"
+										value={text}
+										onChange={(event) => this.changeButton(event)}
+									/>
+								</Form.Group>
+								<div className="flex-end">
+									<Button
+										type="submit"
+										className="tweet-button"
+										variant="primary"
+										size="sm"
+										disabled={button}
+									>
+										Tweet
+									</Button>
+								</div>
+							</Form>
 						</div>
-					</Form>
-				</div>
+					)}
+				</AppContext.Consumer>
 			</div>
 		);
 	}

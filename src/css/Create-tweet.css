@@ -11,13 +11,15 @@
 
 .tweet-button{
     margin-right: 10px;
-    background-color: red;
     align-self: flex-end;
     padding: 5px 10px;
 }
 
 .form-control{
     border-radius: none;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    color: white !important;
 }
 
 .tweet-input2{

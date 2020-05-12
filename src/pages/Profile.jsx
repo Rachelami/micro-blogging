@@ -12,16 +12,10 @@ class Profile extends React.Component {
 
 	handleOnSubmit() {
 		const { username } = this.state;
-		// event.preventDefault();
-		console.log("in the func");
 		localStorage.setItem("userName", username);
-		console.log("this.state.username");
-		console.log(this.state.username);
 	}
 
 	render() {
-		// console.log(localStorage.getItem("userName"));
-		console.log(this.state.username);
 		return (
 			<div className="col-6 offset-3 white">
 				<div className="flex profile-down">
