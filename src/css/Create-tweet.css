@@ -1,32 +1,32 @@
-.tweet-box{
-    display:flex;
-    flex-direction: column;
-    padding: 10px;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    margin-top: 20px;
-    color: #ccc;
-    text-align: left;
+.tweet-box {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	border: 2px solid #ccc;
+	border-radius: 6px;
+	margin-top: 20px;
+	color: #ccc;
+	text-align: left;
+	/* margin: 10px; */
 }
 
-.tweet-button{
-    margin-right: 10px;
-    align-self: flex-end;
-    padding: 5px 10px;
+.tweet-button {
+	margin-right: 10px;
+	align-self: flex-end;
+	padding: 5px 10px;
 }
 
-.form-control{
-    border-radius: none;
-    background-color: transparent !important;
-    box-shadow: none !important;
-    color: white !important;
+.form-control {
+	border-radius: none;
+	background-color: transparent !important;
+	box-shadow: none !important;
+	color: white !important;
 }
 
-.tweet-input2{
-    border: none;
+.tweet-input2 {
+	border: none;
 }
 
-.background{
-    background-color:rgb(21, 20, 22);
+.background {
+	background-color: rgb(21, 20, 22);
 }
-

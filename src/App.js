@@ -56,17 +56,19 @@ class App extends React.Component {
 		return (
 			<div className="App background">
 				<div>
-					<div className="row">
-						<Router>
-							<div className="col-10 offset-1">
+					<Router>
+						<div className="row">
+							<div className="col-md-10 offset-md-1 col-sm-12">
 								<Navbar />
 							</div>
-							<Switch>
-								<Route path="/profile">
-									<Profile />
-								</Route>
-								<Route path="/">
-									<div className="col-6 offset-3">
+						</div>
+						<Switch>
+							<Route path="/profile">
+								<Profile />
+							</Route>
+							<Route path="/">
+								<div className="row">
+									<div className="col-md-6 offset-md-3 col-sm-12">
 										<AppContext.Provider
 											value={{
 												tweetsList: list,
@@ -74,16 +76,16 @@ class App extends React.Component {
 													this.handleOnTweet(tweet);
 												},
 											}}
-											>
+										>
 											<CreateTweet />
 											{loading && <Loader />}
 											<TweetsList />
 										</AppContext.Provider>
 									</div>
-								</Route>
-							</Switch>
-						</Router>
-					</div>
+								</div>
+							</Route>
+						</Switch>
+					</Router>
 				</div>
 			</div>
 		);

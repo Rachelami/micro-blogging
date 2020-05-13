@@ -1,5 +1,5 @@
 .tweet-in-list {
-	background-color: #343A40;
+	background-color: #343a40;
 	border-radius: 6px;
 	padding: 20px;
 	margin: 10px 0px;
@@ -14,16 +14,16 @@
 
 .name-date {
 	display: flex;
-    justify-content: space-between;
-    color: #6C757D;
+	justify-content: space-between;
+	color: #6c757d;
 }
 
-.tweet-text{
-    text-align: left;
-    margin-top: 14px;
+.tweet-text {
+	text-align: left;
+	margin-top: 14px;
 }
 
-.flex-end{
-    display: flex;
-    justify-content: flex-end;
+.flex-end {
+	display: flex;
+	justify-content: flex-end;
 }

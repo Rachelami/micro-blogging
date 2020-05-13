@@ -17,31 +17,31 @@ class Profile extends React.Component {
 
 	render() {
 		return (
-			<div className="col-6 offset-3 white">
-				<div className="flex profile-down">
-					<h1>Profile</h1>
-				</div>
+				<div className="col-6 offset-3 white">
+					<div className="flex profile-down">
+						<h1>Profile</h1>
+					</div>
 
-				<Form onSubmit={(event) => this.handleOnSubmit(event)}>
-					<Form.Group controlId="formBasic">
-						<div className="flex">
-							<Form.Label>User Name</Form.Label>
-						</div>
-						<Form.Control
-							type="text"
-							placeholder= {localStorage.getItem("userName")}
-							onChange={(event) =>
-								this.setState({ username: event.target.value })
-							}
-						/>
-						<div className="flex right">
-							<Button variant="primary" type="submit">
-								Submit
-							</Button>
-						</div>
-					</Form.Group>
-				</Form>
-			</div>
+					<Form onSubmit={(event) => this.handleOnSubmit(event)}>
+						<Form.Group controlId="formBasic">
+							<div className="flex">
+								<Form.Label>User Name</Form.Label>
+							</div>
+							<Form.Control
+								type="text"
+								placeholder={localStorage.getItem("userName")}
+								onChange={(event) =>
+									this.setState({ username: event.target.value })
+								}
+							/>
+							<div className="flex right">
+								<Button variant="primary" type="submit">
+									Submit
+								</Button>
+							</div>
+						</Form.Group>
+					</Form>
+				</div>
 		);
 	}
 }
