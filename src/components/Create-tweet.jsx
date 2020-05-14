@@ -31,9 +31,8 @@ class CreateTweet extends React.Component {
 	}
 
 	changeButton(event) {
-		const { text } = this.state;
 		this.setState({ text: event.target.value, button: false });
-		if (text.length > 140 || event.target.value.length < 1) {
+		if (event.target.value.length > 140 || event.target.value.length < 1) {
 			this.setState({ button: true });
 		} else {
 			this.setState({ button: false });
@@ -58,11 +57,14 @@ class CreateTweet extends React.Component {
 										className="tweet-input2 background"
 										as="textarea"
 										rows="3"
+										maxLength="140"
 										value={text}
 										onChange={(event) => this.changeButton(event)}
 									/>
 								</Form.Group>
 								<div className="flex-end">
+									<span className="margin-right">{text.length}/140</span>
+									{/* <span className="margin-right">{140- text.length}</span> */}
 									<Button
 										type="submit"
 										className="tweet-button"

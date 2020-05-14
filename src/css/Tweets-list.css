@@ -21,9 +21,11 @@
 .tweet-text {
 	text-align: left;
 	margin-top: 14px;
+	word-break: break-all;
 }
 
 .flex-end {
 	display: flex;
 	justify-content: flex-end;
+	align-items: flex-end;
 }

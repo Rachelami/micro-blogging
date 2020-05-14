@@ -1,7 +1,32 @@
 import React from "react";
 import AppContext from "../AppContext";
+import { getData } from "../lib/api";
 
-function TweetsList(props) {
+
+class TweetsList extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			list: ""
+		};
+	}
+
+	async componentDidMount() {
+		console.log("update");
+		await getData().then((response) => {
+			console.log(response.data.tweets)
+			this.setState({
+				list: response.data.tweets,
+			});
+		});
+		this.intervalID = setTimeout(this.componentDidMount.bind(this), 10000);
+	}
+
+	componentWillUnmount() {
+		clearTimeout(this.intervalID);
+	}
+
+	render() {
 		return (
 			<div>
 				<AppContext.Consumer>
@@ -25,7 +50,7 @@ function TweetsList(props) {
 				</AppContext.Consumer>
 			</div>
 		);
-	
+	}
 }
 
 export default TweetsList;

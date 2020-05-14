@@ -35,11 +35,6 @@ class App extends React.Component {
 				list: response.data.tweets,
 			});
 		});
-		this.intervalID = setTimeout(this.getDataFunc.bind(this), 10000);
-	}
-
-	componentWillUnmount() {
-		clearTimeout(this.intervalID);
 	}
 
 	handleOnTweet(tweet) {
