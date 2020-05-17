@@ -32,6 +32,7 @@ class Profile extends React.Component {
 							<Form.Label>User Name</Form.Label>
 						</div>
 						<Form.Control
+						className="profile-height"
 							type="text"
 							placeholder={localStorage.getItem("userName")}
 							onChange={(event) =>

@@ -15,9 +15,11 @@ class CreateTweet extends React.Component {
 	handleSubmit(event, callback) {
 		this.setState({ button: true });
 		const { text } = this.state;
-		if (localStorage.getItem("userName") === null) {
+		if (localStorage.getItem("userName") === "") {
+			console.log("i am undefined");
 			localStorage.setItem("userName", "Anonymous");
 		}
+
 		event.preventDefault();
 		let tweet = {
 			tweet: {
@@ -54,7 +56,7 @@ class CreateTweet extends React.Component {
 									<Form.Control
 										placeholder="What you have in mind..."
 										type="text"
-										className="tweet-input2 background"
+										className="tweet-input2 background form-height"
 										as="textarea"
 										rows="3"
 										maxLength="140"
@@ -64,7 +66,6 @@ class CreateTweet extends React.Component {
 								</Form.Group>
 								<div className="flex-end">
 									<span className="margin-right">{text.length}/140</span>
-									{/* <span className="margin-right">{140- text.length}</span> */}
 									<Button
 										type="submit"
 										className="tweet-button"

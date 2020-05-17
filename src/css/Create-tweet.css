@@ -21,7 +21,14 @@
 	background-color: transparent !important;
 	box-shadow: none !important;
 	color: white !important;
+}
+
+.form-height{
 	height: 85px !important;
+}
+
+.profile-height{
+	height: auto;
 }
 
 .tweet-input2 {
